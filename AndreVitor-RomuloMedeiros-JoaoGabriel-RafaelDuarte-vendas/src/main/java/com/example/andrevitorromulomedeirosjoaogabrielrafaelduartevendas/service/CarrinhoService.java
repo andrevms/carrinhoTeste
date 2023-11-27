@@ -22,20 +22,20 @@ public class CarrinhoService {
     public double calculateFrete(List<Item> listItems){
         double price = 0.0;
         double discont = 0.95;
-        double peso = calculatePeso(listItems);
+        double weight = calculateWeight(listItems);
 
         if(listItems.size() < 5){
             price +=10.0;
         }
 
-        if(peso <= 2.0) {
+        if(weight <= 2.0) {
             //Frete gratis
-        }else if ( peso <= 10.0){
-            price += peso * 2;
-        }else if ( peso <= 50.0) {
-            price += peso * 4;
+        }else if ( weight <= 10.0){
+            price += weight * 2;
+        }else if ( weight <= 50.0) {
+            price += weight * 4;
         }else {
-            price += peso * 7;
+            price += weight * 7;
         }
 
         if(listItems.size() >= 3) {
@@ -47,7 +47,7 @@ public class CarrinhoService {
         return price;
     }
 
-    public double calculatePeso(List<Item> listItems) {
+    public double calculateWeight(List<Item> listItems) {
         double weight = 0.0;
         try{
             for (Item item: listItems
