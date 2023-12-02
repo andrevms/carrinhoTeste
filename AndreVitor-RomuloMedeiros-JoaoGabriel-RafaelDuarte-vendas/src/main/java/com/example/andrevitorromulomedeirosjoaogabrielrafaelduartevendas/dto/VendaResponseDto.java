@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class VendaDto {
+public class VendaResponseDto {
     private double valor;
     private double frete;
 }

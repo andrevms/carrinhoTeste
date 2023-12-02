@@ -1,15 +1,13 @@
 package com.example.andrevitorromulomedeirosjoaogabrielrafaelduartevendas.controller;
 
-import com.example.andrevitorromulomedeirosjoaogabrielrafaelduartevendas.dto.VendaDto;
-import com.example.andrevitorromulomedeirosjoaogabrielrafaelduartevendas.model.Item;
+import com.example.andrevitorromulomedeirosjoaogabrielrafaelduartevendas.dto.VendaRequestDto;
+import com.example.andrevitorromulomedeirosjoaogabrielrafaelduartevendas.dto.VendaResponseDto;
 import com.example.andrevitorromulomedeirosjoaogabrielrafaelduartevendas.service.CarrinhoService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 
 @RestController
@@ -23,10 +21,9 @@ public class CarrinhoController {
     }
 
     @PostMapping("checkout")
-    public ResponseEntity<VendaDto> checkout(@RequestBody List<String> listItems){
-
+    public ResponseEntity<VendaResponseDto> checkout(@RequestBody VendaRequestDto listItems){
         try{
-            VendaDto vendas = carrinhoService.checkout(listItems);
+            VendaResponseDto vendas = carrinhoService.checkout(listItems.getListId());
             return ResponseEntity.ok(vendas);
         }catch (Exception e ) {
 

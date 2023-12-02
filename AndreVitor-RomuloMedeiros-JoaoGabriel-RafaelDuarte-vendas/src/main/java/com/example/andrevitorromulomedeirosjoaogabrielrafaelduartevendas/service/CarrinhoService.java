@@ -1,6 +1,6 @@
 package com.example.andrevitorromulomedeirosjoaogabrielrafaelduartevendas.service;
 
-import com.example.andrevitorromulomedeirosjoaogabrielrafaelduartevendas.dto.VendaDto;
+import com.example.andrevitorromulomedeirosjoaogabrielrafaelduartevendas.dto.VendaResponseDto;
 import com.example.andrevitorromulomedeirosjoaogabrielrafaelduartevendas.model.TypeItem;
 import com.example.andrevitorromulomedeirosjoaogabrielrafaelduartevendas.model.Item;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,14 +16,14 @@ public class CarrinhoService {
     @Autowired
     ItemService itemService;
 
-    public VendaDto checkout(List<String> listItens) {
+    public VendaResponseDto checkout(List<String> listItens) {
         List<Item> listaDeItens = null;
         for(String s : listItens){
             listaDeItens.add(itemService.getItemById(s).get());
         }
         double price = calculateValue(listaDeItens);
         double frete = calculateFrete(listaDeItens);
-        return new VendaDto(price,frete);
+        return new VendaResponseDto(price,frete);
     }
 
     public double calculateFrete(List<Item> listItems){
