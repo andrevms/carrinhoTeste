@@ -7,6 +7,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+
 
 @Data
 @Entity
@@ -20,8 +22,8 @@ public class Item {
     private String id;
     private String name;
     private String description;
-    private double price;
-    private double weight;
+    private BigDecimal price;
+    private BigDecimal weight;
     private TypeItem type;
 
 }

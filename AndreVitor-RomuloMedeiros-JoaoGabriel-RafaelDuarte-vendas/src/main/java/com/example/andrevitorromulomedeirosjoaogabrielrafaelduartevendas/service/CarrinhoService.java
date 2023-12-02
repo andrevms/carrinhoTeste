@@ -6,6 +6,9 @@ import com.example.andrevitorromulomedeirosjoaogabrielrafaelduartevendas.model.I
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+import java.math.MathContext;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -25,45 +28,45 @@ public class CarrinhoService {
         for(String s : listItens){
             listaDeItens.add(itemService.getItemById(s).get());
         }
-        double price = calculateValue(listaDeItens);
-        double frete = calculateFrete(listaDeItens);
-        return new VendaResponseDto(price,frete);
+        BigDecimal price = calculateValue(listaDeItens);
+        BigDecimal frete = calculateFrete(listaDeItens);
+        return new VendaResponseDto(price.doubleValue(),frete.doubleValue());
     }
 
-    public double calculateFrete(List<Item> listItems){
-        double price = 0.0;
-        double discont = 0.95;
-        double weight = calculateWeight(listItems);
+    public BigDecimal calculateFrete(List<Item> listItems){
+        BigDecimal price = BigDecimal.valueOf(0.00).setScale(2, RoundingMode.FLOOR);
+        BigDecimal discont = BigDecimal.valueOf(0.95).setScale(2, RoundingMode.FLOOR);
+        BigDecimal weight = calculateWeight(listItems);
 
-        if(listItems.size() < 5){
-            price +=10.0;
+        if(listItems.size() > 5){
+            price = price.add(BigDecimal.valueOf(10.00).setScale(2, RoundingMode.FLOOR));
         }
 
-        if(weight <= 2.0) {
+        if(weight.doubleValue() <= 2.0) {
             //Frete gratis
-        }else if ( weight <= 10.0){
-            price += weight * 2;
-        }else if ( weight <= 50.0) {
-            price += weight * 4;
+        }else if ( weight.doubleValue() <= 10.0){
+            price = price.add(weight.multiply(BigDecimal.valueOf(2.00)));
+        }else if ( weight.doubleValue() <= 50.0) {
+            price = price.add(weight.multiply(BigDecimal.valueOf(4.00)));
         }else {
-            price += weight * 7;
+            price = price.add(weight.multiply(BigDecimal.valueOf(7.00)));
         }
 
         if(listItems.size() >= 3) {
             if( hasDiscontoFrete(listItems) ) {
-                price = price * discont;
+                price = price.multiply(discont);
             }
         }
 
-        return price;
+        return price.setScale(2, RoundingMode.FLOOR);
     }
 
-    public double calculateWeight(List<Item> listItems) {
-        double weight = 0.0;
+    public BigDecimal calculateWeight(List<Item> listItems) {
+        BigDecimal weight = BigDecimal.valueOf(0.00).setScale(2, RoundingMode.FLOOR);
         try{
             for (Item item: listItems
                  ) {
-                weight += item.getWeight();
+                weight = weight.add(item.getWeight());
             }
         }catch(Exception e){
 
@@ -71,12 +74,12 @@ public class CarrinhoService {
         return weight;
     }
 
-    public double calculateValue(List<Item> listItems){
-        double price = 0.0;
+    public BigDecimal calculateValue(List<Item> listItems){
+        BigDecimal price = BigDecimal.valueOf(0.00).setScale(2, RoundingMode.FLOOR);
         try{
             for (Item item: listItems
             ) {
-                price += item.getPrice();
+                price = price.add(item.getPrice());
             }
         }catch(Exception e){
 
@@ -87,14 +90,14 @@ public class CarrinhoService {
         return price;
     }
 
-    public double hasDiscontoValue(double valueCarrinho) {
-        double discontMoreThan1000 = 0.80;
-        double discontMoreThan500 = 0.90;
+    public BigDecimal hasDiscontoValue(BigDecimal valueCarrinho) {
+        BigDecimal discontMoreThan1000 = BigDecimal.valueOf(0.80).setScale(2, RoundingMode.FLOOR);
+        BigDecimal discontMoreThan500 = BigDecimal.valueOf(0.90).setScale(2, RoundingMode.FLOOR);
 
-        if( valueCarrinho > 1000.0) {
-            return valueCarrinho * discontMoreThan1000;
-        }else if (valueCarrinho >500.0) {
-            return valueCarrinho * discontMoreThan500;
+        if( valueCarrinho.doubleValue() > 1000.0) {
+            return BigDecimal.valueOf(valueCarrinho.doubleValue() * discontMoreThan1000.doubleValue()).setScale(2, RoundingMode.FLOOR);
+        }else if (valueCarrinho.doubleValue() > 500.0) {
+            return BigDecimal.valueOf(valueCarrinho.doubleValue() * discontMoreThan500.doubleValue()).setScale(2, RoundingMode.FLOOR);
         }
 
         return valueCarrinho;
