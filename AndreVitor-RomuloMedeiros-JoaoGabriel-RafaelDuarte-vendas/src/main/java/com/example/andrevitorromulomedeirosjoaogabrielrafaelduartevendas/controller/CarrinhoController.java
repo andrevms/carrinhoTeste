@@ -23,11 +23,11 @@ public class CarrinhoController {
     }
 
     @PostMapping("checkout")
-    public ResponseEntity<VendaDto> checkout(@RequestBody List<Item> listItems){
+    public ResponseEntity<VendaDto> checkout(@RequestBody List<String> listItems){
 
         try{
             VendaDto vendas = carrinhoService.checkout(listItems);
-            return ResponseEntity.ok(carrinhoService.checkout(listItems));
+            return ResponseEntity.ok(vendas);
         }catch (Exception e ) {
 
         }
