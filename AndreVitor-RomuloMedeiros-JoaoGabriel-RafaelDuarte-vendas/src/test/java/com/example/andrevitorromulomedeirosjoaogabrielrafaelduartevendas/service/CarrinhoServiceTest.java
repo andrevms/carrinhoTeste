@@ -3,6 +3,7 @@ package com.example.andrevitorromulomedeirosjoaogabrielrafaelduartevendas.servic
 import com.example.andrevitorromulomedeirosjoaogabrielrafaelduartevendas.dto.VendaResponseDto;
 import com.example.andrevitorromulomedeirosjoaogabrielrafaelduartevendas.model.Item;
 import com.example.andrevitorromulomedeirosjoaogabrielrafaelduartevendas.model.TypeItem;
+import com.example.andrevitorromulomedeirosjoaogabrielrafaelduartevendas.repository.ItemRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -18,8 +19,11 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
 
 class CarrinhoServiceTest {
 
@@ -27,22 +31,29 @@ class CarrinhoServiceTest {
     CarrinhoService carrinhoService;
     @Mock
     ItemService itemService;
+
     @BeforeEach
     public void setup() {
         MockitoAnnotations.initMocks(this);
         this.carrinhoService = new CarrinhoService(itemService);
+
     }
     @ParameterizedTest
     @CsvSource({
             "valor1,valor2,valor3,valor4"
     })
     void checkout(String id1, String id2, String id3, String id4) {
+        Item item1 = new Item();
+
+        when(itemService.getItemById(any())).thenReturn(Optional.of(item1));
+
         List<String> listaDeIds = new ArrayList<>();
         listaDeIds.add(id1);
         listaDeIds.add(id2);
         listaDeIds.add(id3);
         listaDeIds.add(id4);
-        assertEquals(new VendaResponseDto(2,3),carrinhoService.checkout(listaDeIds));
+
+        assertEquals(new VendaResponseDto(0.0,9.5),carrinhoService.checkout(listaDeIds));
     }
 
     @Test
