@@ -6,6 +6,7 @@ import com.example.andrevitorromulomedeirosjoaogabrielrafaelduartevendas.model.I
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,11 +14,14 @@ import java.util.Map;
 @Service
 public class CarrinhoService {
 
-    @Autowired
+
     ItemService itemService;
+    CarrinhoService(ItemService itemService){
+        this.itemService = itemService;
+    }
 
     public VendaResponseDto checkout(List<String> listItens) {
-        List<Item> listaDeItens = null;
+        List<Item> listaDeItens = new ArrayList<>();
         for(String s : listItens){
             listaDeItens.add(itemService.getItemById(s).get());
         }
