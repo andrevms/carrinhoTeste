@@ -8,6 +8,7 @@ class AndreVitorRomuloMedeirosJoaoGabrielRafaelDuarteVendasApplicationTests {
 
     @Test
     void contextLoads() {
+
     }
 
 }
