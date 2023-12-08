@@ -2,7 +2,7 @@
 
 repositório destinado a atividade final da disciplina de Gerência De Configuração e Teste de Software
 
-<h3>*Dependências do projeto:* </h4>
+<h3>Dependências do projeto: </h4>
 Java17   
 Docker  
 Intellij
