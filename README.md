@@ -7,15 +7,15 @@ Java17
 Docker  
 Intellij
 
-<h3>*Como rodar o Projeto:* </h4>
+<h3>Como rodar o Projeto: </h4>
 
 Entrar no diretório do projeto pelo terminal e rodar o docker para subir os containers.(docker-compose up)   
 Após isso rodar o arquivo main do projeto.(no intellij usar o RUN)
 
-<h3>*Como rodar os Testes:* </h4>
+<h3>Como rodar os Testes: </h4>
 Clicar com o botão direito no pacote principal dos testes e usar a opção Run 'Tests'.( no intellij )
 
-<h3>*Como verificar a cobertura dos testes:*</h3>
+<h3>Como verificar a cobertura dos testes:</h3>
 
 Acessar o arquivo localizado em > target/site/jacoco/index.html ( utilizando um broswer ).
 
