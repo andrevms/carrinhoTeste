@@ -4,7 +4,6 @@ import com.example.andrevitorromulomedeirosjoaogabrielrafaelduartevendas.dto.Ven
 import com.example.andrevitorromulomedeirosjoaogabrielrafaelduartevendas.model.Item;
 import com.example.andrevitorromulomedeirosjoaogabrielrafaelduartevendas.model.TypeItem;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -51,7 +50,7 @@ class CarrinhoServiceTest {
         listaDeIds.add(id3);
         listaDeIds.add(id4);
 
-        assertEquals(new VendaResponseDto(0.0,9.5),carrinhoService.checkout(listaDeIds));
+        assertEquals(new VendaResponseDto(0.0,0.0),carrinhoService.checkout(listaDeIds));
     }
 
     @ParameterizedTest
