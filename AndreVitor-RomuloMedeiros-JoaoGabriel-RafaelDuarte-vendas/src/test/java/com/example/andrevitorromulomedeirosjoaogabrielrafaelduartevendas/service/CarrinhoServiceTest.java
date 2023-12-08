@@ -81,9 +81,43 @@ class CarrinhoServiceTest {
         List<Item> mockListlistSizeMoreThen5PesoLessThen2WithMoreThen0ItensWithSameType  = new ArrayList<>(List.of(listSizeMoreThen5PesoLessThen2WithMoreThen0ItensWithSameType ));
 
 
+        Item[] listSizeMoreThen5PesoMoreThen2LessThen10WithMoreThen2ItensWithSameType = {
+                new Item("1","item1","description", new BigDecimal("1001.00"), new BigDecimal("1.00"), TypeItem.CASA),
+                new Item("2","item2","description", new BigDecimal("23.00"), new BigDecimal("1.00"), TypeItem.ROUPA),
+                new Item("3","item3","description", new BigDecimal("42.00"), new BigDecimal("1.00"), TypeItem.COZINHA),
+                new Item("4","item4","description", new BigDecimal("1001.00"), new BigDecimal("1.00"), TypeItem.ELETRONICO),
+                new Item("5","item5","description", new BigDecimal("1001.00"), new BigDecimal("1.00"), TypeItem.ROUPA),
+                new Item("6","item6","description", new BigDecimal("1001.00"), new BigDecimal("1.00"), TypeItem.CASA),
+        };
+        List<Item> mockListlistSizeMoreThen5PesoMoreThen2LessThen10WithMoreThen0ItensWithSameType  = new ArrayList<>(List.of(listSizeMoreThen5PesoMoreThen2LessThen10WithMoreThen2ItensWithSameType ));
+
+        Item[] listSizeMoreThen5PesoMoreThen10LessThen50WithMoreThen2ItensWithSameType = {
+                new Item("1","item1","description", new BigDecimal("1001.00"), new BigDecimal("10.00"), TypeItem.CASA),
+                new Item("2","item2","description", new BigDecimal("23.00"), new BigDecimal("10.00"), TypeItem.ROUPA),
+                new Item("3","item3","description", new BigDecimal("42.00"), new BigDecimal("10.00"), TypeItem.COZINHA),
+                new Item("4","item4","description", new BigDecimal("1001.00"), new BigDecimal("10.00"), TypeItem.ELETRONICO),
+                new Item("5","item5","description", new BigDecimal("1001.00"), new BigDecimal("1.00"), TypeItem.ROUPA),
+                new Item("6","item6","description", new BigDecimal("1001.00"), new BigDecimal("1.00"), TypeItem.CASA),
+        };
+        List<Item> mockListlistSizeMoreThen5PesoMoreThen10LessThen50WithMoreThen2ItensWithSameType  = new ArrayList<>(List.of(listSizeMoreThen5PesoMoreThen10LessThen50WithMoreThen2ItensWithSameType ));
+
+        Item[] listSizeMoreThen5PesoMoreThen50And2ItensWithSameType = {
+                new Item("1","item1","description", new BigDecimal("1001.00"), new BigDecimal("10.00"), TypeItem.CASA),
+                new Item("2","item2","description", new BigDecimal("23.00"), new BigDecimal("10.00"), TypeItem.ROUPA),
+                new Item("3","item3","description", new BigDecimal("42.00"), new BigDecimal("10.00"), TypeItem.COZINHA),
+                new Item("4","item4","description", new BigDecimal("1001.00"), new BigDecimal("10.00"), TypeItem.ELETRONICO),
+                new Item("5","item5","description", new BigDecimal("1001.00"), new BigDecimal("10.00"), TypeItem.ROUPA),
+                new Item("6","item6","description", new BigDecimal("1001.00"), new BigDecimal("10.00"), TypeItem.CASA),
+        };
+        List<Item> mockListlistSizeMoreThen5And0ItensWithSameType  = new ArrayList<>(List.of(listSizeMoreThen5PesoMoreThen50And2ItensWithSameType));
+
+
         return Stream.of(
                 Arguments.of(mockListlistSizeMoreThen5PesoLessThen2WithMoreThen2ItensWithSameType, new BigDecimal("9.50")),
-                Arguments.of(mockListlistSizeMoreThen5PesoLessThen2WithMoreThen0ItensWithSameType, new BigDecimal("10.00"))
+                Arguments.of(mockListlistSizeMoreThen5PesoLessThen2WithMoreThen0ItensWithSameType, new BigDecimal("10.00")),
+                Arguments.of(mockListlistSizeMoreThen5PesoMoreThen2LessThen10WithMoreThen0ItensWithSameType, new BigDecimal("22.00")),
+                Arguments.of(mockListlistSizeMoreThen5PesoMoreThen10LessThen50WithMoreThen2ItensWithSameType, new BigDecimal("178.00")),
+                Arguments.of(mockListlistSizeMoreThen5And0ItensWithSameType, new BigDecimal("430.00"))
 
         );
     }
