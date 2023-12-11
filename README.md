@@ -16,9 +16,12 @@ Após isso rodar o arquivo main do projeto.(no intellij usar o RUN)
 Clicar com o botão direito no pacote principal dos testes e usar a opção Run 'Tests'.( no intellij )
 
 <h3>Como verificar a cobertura dos testes:</h3>
+A cobertura dos testes abrange Um total de 52%, sendo 100% do carrinho service e o restante dividido entre as outras classes.
+
+Foi utilizado o plugin jacoco para determinar a cobertura dos testes, para gerar um relatório é necessário rodar o 
+**mvn clean install** e em seguinda **mvn jacoco:report**
 
 Acessar o arquivo localizado em > target/site/jacoco/index.html ( utilizando um broswer ).
 
 O jacoco gera automáticamente um relatório descrevendo a porcentagem da cobertura de testes de cada classe.
 
-para gerar um novo relatório utilizando o jacoco é necessário utilizar o comando **mvn jacoco:report**
